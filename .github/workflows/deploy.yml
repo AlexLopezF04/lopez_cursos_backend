@@ -20,7 +20,7 @@ jobs:
         env:
           POSTGRES_DB:       lopez_cursos_db
           POSTGRES_USER:     lopez_cursos_user
-          POSTGRES_PASSWORD: lopez_pass
+          POSTGRES_PASSWORD: lopez_curso_pass
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -51,7 +51,7 @@ jobs:
           ALLOWED_HOSTS: localhost,127.0.0.1
           DB_NAME:       lopez_cursos_db
           DB_USER:       lopez_cursos_user
-          DB_PASSWORD:   lopez_pass
+          DB_PASSWORD:   lopez_curso_pass
           DB_HOST:       localhost
           DB_PORT:       5432
           TEST_DB_NAME:  lopez_cursos_test_db
