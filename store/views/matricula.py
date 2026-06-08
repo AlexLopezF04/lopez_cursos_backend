@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions
 from store.models import Matricula
 from store.serializers import MatriculaSerializer
 from store.pagination import StandardPagination
-from store.permissions import EsAdminDjango, EsPropietarioOAdmin
+from store.permissions import EsAdminDjango
 from store.filters import MatriculaFilter
 
 class MatriculaViewSet(viewsets.ModelViewSet):
