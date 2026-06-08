@@ -1,7 +1,5 @@
 # store/views/curso.py
 from rest_framework import viewsets, permissions, filters
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 from store.models import Curso
@@ -39,11 +37,3 @@ class CursoViewSet(viewsets.ModelViewSet):
             return qs.filter(publicado=True) | qs.filter(instructor=self.request.user)
         return qs
 
-    @action(detail=True, methods=['get'], url_path='lecciones')
-    def lecciones(self, request, pk=None):
-        """GET /api/cursos/{id}/lecciones/"""
-        from store.serializers import LeccionSerializer
-        curso    = self.get_object()
-        qs       = curso.lecciones.all()
-        serializer = LeccionSerializer(qs, many=True)
-        return Response(serializer.data)
