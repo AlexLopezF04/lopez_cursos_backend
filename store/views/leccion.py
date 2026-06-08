@@ -8,6 +8,7 @@ from store.permissions import EsInstructor, EsPropietarioOAdmin
 
 class LeccionViewSet(viewsets.ModelViewSet):
     serializer_class   = LeccionSerializer
+    pagination_class   = None
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
