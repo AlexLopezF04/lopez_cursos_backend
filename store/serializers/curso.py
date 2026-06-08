@@ -5,12 +5,27 @@ from .categoria import CategoriaSerializer
 
 class CursoListSerializer(serializers.ModelSerializer):
     """Versión liviana para listados."""
-    instructor = serializers.StringRelatedField()
-    categoria  = serializers.StringRelatedField()
+    instructor   = serializers.SerializerMethodField()
+    categoria    = serializers.SerializerMethodField()
+    categoria_id = serializers.PrimaryKeyRelatedField(
+        source='categoria', read_only=True,
+    )
 
     class Meta:
         model  = Curso
-        fields = ['id', 'titulo', 'nivel', 'precio', 'publicado', 'instructor', 'categoria']
+        fields = [
+            'id', 'titulo', 'descripcion', 'nivel', 'precio',
+            'publicado', 'instructor', 'categoria', 'categoria_id',
+            'created_at',
+        ]
+
+    def get_instructor(self, obj):
+        return {'id': obj.instructor_id, 'username': obj.instructor.username}
+
+    def get_categoria(self, obj):
+        if obj.categoria is None:
+            return None
+        return {'id': obj.categoria.id, 'nombre': obj.categoria.nombre}
 
 class CursoSerializer(serializers.ModelSerializer):
     """Versión completa para detalle / creación."""
