@@ -41,9 +41,9 @@ class CursoSerializer(serializers.ModelSerializer):
         model  = Curso
         fields = [
             'id', 'titulo', 'descripcion', 'precio', 'nivel',
-            'publicado', 'instructor', 'categoria', 'categoria_id', 'created_at',
+            'publicado', 'instructor', 'categoria', 'categoria_id', 'created_at', 'updated_at',
         ]
-        read_only_fields = ['instructor', 'created_at']
+        read_only_fields = ['instructor', 'created_at', 'updated_at']
 
     def create(self, validated_data):
         validated_data['instructor'] = self.context['request'].user
