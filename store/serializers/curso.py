@@ -16,7 +16,7 @@ class CursoListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'titulo', 'descripcion', 'nivel', 'precio',
             'publicado', 'instructor', 'categoria', 'categoria_id',
-            'created_at',
+            'created_at', 'updated_at',
         ]
 
     def get_instructor(self, obj):
